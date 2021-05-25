@@ -1,4 +1,3 @@
-import axios from "axios";
 import {handleGetRequest, handlePostRequest} from "../util/RestUtil";
 import {DISCUSSION_CONTENT_FILTER, NUMBER_OF_MESSAGES_PER_PAGE} from "../util/businessLogicUtil";
 
@@ -28,3 +27,5 @@ class ChattingService {
             onSuccess, onError);
     }
 }
+
+export default ChattingService;

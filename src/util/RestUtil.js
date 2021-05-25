@@ -5,16 +5,16 @@ export function handleGetRequest(url, requestParams, onSuccess, onError) {
 
     axios.get(fullURI)
         .then((response) => {
-            handleResponse(`GET ${fullURI} : SUCCESS.`, response, onSuccess)
+            handleResponse(`GET ${fullURI} : SUCCESS.`, response ? response.data : null, onSuccess)
         }, (error) => {
-            handleResponse(`POST ${fullURI} : ERROR.`, error, onError)
+            handleResponse(`GET ${fullURI} : ERROR.`, error, onError)
         });
 }
 
 export function handlePostRequest(url, body, onSuccess, onError) {
     axios.post(url, body)
         .then((response) => {
-            handleResponse(`POST ${url} : SUCCESS.`, response, onSuccess)
+            handleResponse(`POST ${url} : SUCCESS.`, response ? response.data : null, onSuccess)
         }, (error) => {
             handleResponse(`POST ${url} : ERROR.`, error, onError)
         });
@@ -28,10 +28,10 @@ function prepareGetRequest(path, params) {
 function formatRequestParams(params) {
     let requestParams = "";
     if (params && params.length > 0) {
-        params.forEach(param => `${requestParams}${param}&`);
+        params.forEach(param => requestParams= `${requestParams}${param}&`);
 
         //remove ending &
-        requestParams.substr(0, requestParams.length - 1)
+        requestParams = `?${requestParams.substr(0, requestParams.length - 1)}`
     }
     return requestParams;
 }
