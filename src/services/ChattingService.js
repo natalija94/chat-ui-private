@@ -12,8 +12,8 @@ const SEND_MESSAGE_PATH = "/send-message";
 
 class ChattingService {
 
-    static getDiscussionPaginated(onSuccess, onError) {
-        handleGetRequest(DISCUSSION_CONTROLLER + GET_PART_OF_DISCUSSION_PATH, [`page=${NUMBER_OF_MESSAGES_PER_PAGE}`, "numberOfMessagesPerPage=20"],
+    static getDiscussionPaginated(pageNumber, onSuccess, onError) {
+        handleGetRequest(DISCUSSION_CONTROLLER + GET_PART_OF_DISCUSSION_PATH, [`page=${pageNumber}`, `numberOfMessagesPerPage=${NUMBER_OF_MESSAGES_PER_PAGE}`],
             onSuccess, onError);
     }
 

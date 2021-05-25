@@ -13,8 +13,12 @@ class DiscussionComponent extends React.Component {
         this.errorWhileMessageSendingCallback = this.errorWhileMessageSendingCallback.bind(this);
         this.getDiscussionSuccessCallback = this.getDiscussionSuccessCallback.bind(this);
         this.getDiscussionErrorOccurredCallback = this.getDiscussionErrorOccurredCallback.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
 
-        this.state = {messages: []}
+        this.state = {
+            messages: [],
+            currentPage: 0
+        }
     }
 
     sentMessageWithSuccessCallback(responseData) {
@@ -24,8 +28,7 @@ class DiscussionComponent extends React.Component {
     }
 
     getDiscussionSuccessCallback(responseData) {
-        let messages = mapChatMessagesFromBackendToUIMessages(responseData.data)
-        console.log("responseData : ", messages)
+        let messages = mapChatMessagesFromBackendToUIMessages(responseData.data);
         this.setState({messages: messages});
     }
 
@@ -33,17 +36,12 @@ class DiscussionComponent extends React.Component {
     }
 
     componentDidMount() {
-        console.log("Component did mount!")
+        ChattingService.getDiscussionPaginated(this.state.currentPage, this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
+    }
+
+    sendMessage(){
         ChattingService.sendMessage(prepareMessageInChatObject("natalija", "prva poruka"),
             this.sentMessageWithSuccessCallback, this.errorWhileMessageSendingCallback)
-
-        ChattingService.getFullDiscussion(this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-    }
-
-    componentWillUnmount() {
     }
 
     stillNoMessagesContent() {
