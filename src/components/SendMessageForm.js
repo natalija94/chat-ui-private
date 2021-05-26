@@ -17,31 +17,31 @@ class SendMessageForm extends Component {
         })
     }
 
-    handleSubmit(event) {
+    handleSubmit(e) {
+        e.preventDefault();
         if (!this.state.message) {
             alert(`You didn't enter anything!`)
         } else {
             this.props.sendMessage(this.state.message);
         }
-        event.preventDefault()
-
+        this.setState({message: ""});
     }
 
     render() {
-        const {comments} = this.state
+        const {message} = this.state
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className={"row"}>
-                        <div className={"col-lg-9"}>
-                    <textarea  className={"col-lg-12 type-message-style"}
-                              value={comments}
-                              placeholder={"Enter what you think..."}
-                              onChange={this.handleCommentsChange}/>
-                        </div>
-                        <div className={"col-lg-3 send-mesage-button-position"}>
-                            <button className={"col-lg-12 btn send-mesage-button-style"} type="submit">Submit</button>
-                        </div>
+                    <div className={"col-9"}>
+                        <textarea className={"col-12 type-message-style"}
+                          value={message}
+                          placeholder={"Enter what you think..."}
+                          onChange={this.handleCommentsChange}/>
                     </div>
+                    <div className={"col-3 send-mesage-button-position"}>
+                        <button className={"col-12 btn send-mesage-button-style"} type="submit">Send</button>
+                    </div>
+                </div>
             </form>
         )
     }

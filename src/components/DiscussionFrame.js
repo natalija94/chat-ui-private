@@ -24,12 +24,14 @@ class DiscussionFrame extends React.Component {
 
         this.handleFullDiscussion = this.handleFullDiscussion.bind(this);
         this.handlePaginatedDiscussion = this.handlePaginatedDiscussion.bind(this);
+        this.handleMachineDetails = this.handleMachineDetails.bind(this);
 
         this.state = {
             messages: [],
             currentPage: 0,
-            currentUser: "natalija",
-            messagesFilter: DISCUSSION_CONTENT_FILTER.NONE}
+            currentUser: "ghj",
+            messagesFilter: DISCUSSION_CONTENT_FILTER.NONE
+        }
     }
 
     sentMessageWithSuccessCallback(responseData) {
@@ -55,11 +57,19 @@ class DiscussionFrame extends React.Component {
             this.sentMessageWithSuccessCallback, this.errorWhileMessageSendingCallback)
     }
 
+    handleMachineDetails(details) {
+        console.log(`${details.city}, ${details.country_name}(${details.country_code})`)
+    }
+
     componentDidMount() {
         //http communication
         ChattingService.getDiscussionPaginated(this.state.currentPage, this.state.messagesFilter,
             this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
 
+        let person = prompt("This is chat room regarding pollution. Our idea is to report places hardly polluted." +
+            " Also, we can organize volunteering actions here in order to make our environment clean and safe." +
+            "Enter your username in order to continue: ", "user_1");
+        this.setState({currentUser: person})
 
         //communication via socket
         chatBus = new ChatStompLogic(
@@ -73,7 +83,6 @@ class DiscussionFrame extends React.Component {
             }
         );
     }
-
 
     handlePaginatedDiscussion(response) {
         if (response)
@@ -95,17 +104,17 @@ class DiscussionFrame extends React.Component {
             content = <DiscussionContent messages={messages} currentUser={this.state.currentUser}/>;
         }
 
-        return <div className={"row height-100 margin-50"}>
-            <div className={"offset-1 col-lg-4 margin-80per"}>
-                <SendMessageForm currentUser={currentUser} sendMessage={this.sendMessage}/>
-            </div>
-            <div className={"col-lg-6 height-80 chat-scroll"}>
+        return <div className={"chat-container m-1"}>
+            <div className={"col-lg-6 mx-auto chat-content"}>
                 <div className={"chat-received-messages"}>
                     {content}
                 </div>
             </div>
+            <div className={"col-lg-6 mx-auto send-new-message-content"}>
+                <SendMessageForm currentUser={currentUser} sendMessage={this.sendMessage}/>
+            </div>
         </div>;
-    }
+    }d
 }
 
 export default DiscussionFrame;

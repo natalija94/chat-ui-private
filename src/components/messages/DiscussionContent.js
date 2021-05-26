@@ -11,30 +11,30 @@ export function DiscussionContent(props) {
 }
 
 export function SpecificMessageContent(props) {
-    let generalMessageAreaStyling = "container default-received-message-style";
+    let generalMessageAreaStyling = " default-received-message-style";
     let messageFromCurrentUser = props.message[UI_FIELDS.CHAT_MESSAGE.USERNAME] === props.currentUser;
     //todo
     let isOffensiveContent = props.message[UI_FIELDS.CHAT_MESSAGE.MESSAGE_STATE] === CHAT_MESSAGE_STATE.OFFENSIVE;
 
 
 
-    let onerow = <div className="row">
-        <div className={messageFromCurrentUser? `col-md-9 offset-md-3` : "col-lg-9"}>
+    let onerow = <div className="row m-0">
+        <div className={messageFromCurrentUser? `offset-2 col-10` : "col-10"}>
 
             <div className={`${generalMessageAreaStyling} ${resolveStylingForMessageType(messageFromCurrentUser, isOffensiveContent)}`}>
-                <div className="row justify-content-start">
-                    <div className="col-4 text-start">
-                        <p  className={"username-style"}> Username: {messageFromCurrentUser ? "You" : props.message[UI_FIELDS.CHAT_MESSAGE.USERNAME]}</p>
+                <div className="row justify-content-start m-0">
+                    <div className="col-6 text-start">
+                        <p  className={"username-style"}>{messageFromCurrentUser ? "You" : props.message[UI_FIELDS.CHAT_MESSAGE.USERNAME]}</p>
                     </div>
                 </div>
-                <div className="row justify-content-center">
-                    <div className="col-8">
+                <div className="row justify-content-center m-0">
+                    <div className="col-10">
                         <p  className={"message-style"}> {isOffensiveContent ? "OFFENSIVE MESSAGE" : props.message[UI_FIELDS.CHAT_MESSAGE.MESSAGE]}</p>
                     </div>
                 </div>
-                <div className="row justify-content-end">
-                    <div className="col-4 text-end">
-                        <p className={"date-style"}> Date: {props.message[UI_FIELDS.CHAT_MESSAGE.MESSAGE_SENT]}</p>
+                <div className="row justify-content-end m-0">
+                    <div className="col-8 text-end">
+                        <p className={"date-style"}>{props.message[UI_FIELDS.CHAT_MESSAGE.MESSAGE_SENT]}</p>
                     </div>
                 </div>
             </div>
