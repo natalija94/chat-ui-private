@@ -1,11 +1,11 @@
 
 import './App.css';
-import DiscussionComponent from "./components/DiscussionComponent";
+import DiscussionComponent from "./components/DiscussionFrame";
 
 
 function App() {
   return (
-    <div className="App">
+    <div className="App chat-background">
 
       <DiscussionComponent/>
 
