@@ -12,13 +12,15 @@ const SEND_MESSAGE_PATH = "/send-message";
 
 export class ChattingService {
 
-    static getDiscussionPaginated(pageNumber, onSuccess, onError) {
-        handleGetRequest(DISCUSSION_CONTROLLER + GET_PART_OF_DISCUSSION_PATH, [`page=${pageNumber}`, `numberOfMessagesPerPage=${NUMBER_OF_MESSAGES_PER_PAGE}`],
+    static getDiscussionPaginated(pageNumber, filter, onSuccess, onError) {
+        handleGetRequest(DISCUSSION_CONTROLLER + GET_PART_OF_DISCUSSION_PATH, [`page=${pageNumber}`,
+                `filter=${filter}`,
+                `numberOfMessagesPerPage=${NUMBER_OF_MESSAGES_PER_PAGE}`],
             onSuccess, onError);
     }
 
-    static getFullDiscussion(onSuccess, onError) {
-        handleGetRequest(DISCUSSION_CONTROLLER + GET_FULL_DISCUSSION_PATH, [`filter=${DISCUSSION_CONTENT_FILTER.APPROPRIATE_CONTENT}`],
+    static getFullDiscussion(filter, onSuccess, onError) {
+        handleGetRequest(DISCUSSION_CONTROLLER + GET_FULL_DISCUSSION_PATH, [`filter=${filter}`],
             onSuccess, onError);
     }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {UI_FIELDS} from "../../util/businessLogicUtil";
+import {CHAT_MESSAGE_STATE, UI_FIELDS} from "../../util/businessLogicUtil";
 
 export function DiscussionContent(props) {
     let messagesToPreview = [];
@@ -11,10 +11,10 @@ export function DiscussionContent(props) {
 }
 
 export function SpecificMessageContent(props) {
-    let generalMessageAreaStyling = "container default-received-message-style"
-    let messageFromCurrentUser = props.message[UI_FIELDS.CHAT_MESSAGE.USERNAME] == props.currentUser;
+    let generalMessageAreaStyling = "container default-received-message-style";
+    let messageFromCurrentUser = props.message[UI_FIELDS.CHAT_MESSAGE.USERNAME] === props.currentUser;
     //todo
-    let isOffensiveContent = false;
+    let isOffensiveContent = props.message[UI_FIELDS.CHAT_MESSAGE.MESSAGE_STATE] === CHAT_MESSAGE_STATE.OFFENSIVE;
 
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import {ChattingService, CHAT_SERVER_URL} from "../services/ChattingService";
 import {
+    CHAT_MESSAGE_STATE, DISCUSSION_CONTENT_FILTER,
     mapChatMessagesFromBackendToUIMessages,
     prepareMessageInChatObject
 } from "../util/businessLogicUtil";
@@ -27,30 +28,27 @@ class DiscussionFrame extends React.Component {
         this.state = {
             messages: [],
             currentPage: 0,
-            currentUser: "natalija"
-        }
+            currentUser: "natalija",
+            messagesFilter: DISCUSSION_CONTENT_FILTER.NONE}
     }
 
     sentMessageWithSuccessCallback(responseData) {
-        //todo
+        if (responseData.data === CHAT_MESSAGE_STATE.OFFENSIVE)
+            alert(`Inappropriate content`)
     }
 
     errorWhileMessageSendingCallback(error) {
-        ///todo
+        alert(`Error: ${error}`)
     }
 
     getDiscussionSuccessCallback(responseData) {
-        console.log("getDiscussionSuccessCallback ", responseData.data)
         let messages = mapChatMessagesFromBackendToUIMessages(responseData.data);
         this.setState({messages: messages});
     }
 
     getDiscussionErrorOccurredCallback(error) {
+        alert(`Error: ${error}`)
     }
-
-    // componentDidMount() {
-    //     ChattingService.getDiscussionPaginated(this.state.currentPage, this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
-    // }
 
     sendMessage(message) {
         ChattingService.sendMessage(prepareMessageInChatObject(this.state.currentUser, message),
@@ -59,11 +57,12 @@ class DiscussionFrame extends React.Component {
 
     componentDidMount() {
         //http communication
-        ChattingService.getDiscussionPaginated(this.state.currentPage, this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
+        ChattingService.getDiscussionPaginated(this.state.currentPage, this.state.messagesFilter,
+            this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback)
 
 
         //communication via socket
-        chatBus  = new ChatStompLogic(
+        chatBus = new ChatStompLogic(
             {
                 host: CHAT_SERVER_URL,
                 onConnected: () => {
@@ -77,13 +76,13 @@ class DiscussionFrame extends React.Component {
 
 
     handlePaginatedDiscussion(response) {
-        if(response)
-        this.getDiscussionSuccessCallback(response);
+        if (response)
+            this.getDiscussionSuccessCallback(response);
     }
 
     handleFullDiscussion(response) {
-        if(response)
-        this.getDiscussionSuccessCallback(response);
+        if (response)
+            this.getDiscussionSuccessCallback(response);
     }
 
     render() {

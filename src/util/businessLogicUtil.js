@@ -6,10 +6,16 @@ export const DISCUSSION_CONTENT_FILTER = Object.freeze({
     OFFENSIVE_CONTENT: "OFFENSIVE_CONTENT"
 });
 
+export const CHAT_MESSAGE_STATE = Object.freeze({
+    OKAY: "OKAY",
+    OFFENSIVE: "OFFENSIVE"
+});
+
 export const SERVER_DTO_CONSTANTS = Object.freeze({
     CHAT_MESSAGE: {
         USERNAME: "username",
         MESSAGE: "message",
+        MESSAGE_STATE: "state",
         MESSAGE_SENT: "messageDate"
     },
 })
@@ -18,6 +24,7 @@ export const UI_FIELDS = Object.freeze({
     CHAT_MESSAGE: {
         USERNAME: "username",
         MESSAGE: "message",
+        MESSAGE_STATE: "state",
         MESSAGE_SENT: "messageDate"
     },
 })
@@ -35,6 +42,7 @@ export function mapUIChatMessageObjectFromBackendObject(backendMessageData) {
     return {
         [UI_FIELDS.CHAT_MESSAGE.USERNAME]: backendMessageData[SERVER_DTO_CONSTANTS.CHAT_MESSAGE.USERNAME],
         [UI_FIELDS.CHAT_MESSAGE.MESSAGE]: backendMessageData[SERVER_DTO_CONSTANTS.CHAT_MESSAGE.MESSAGE],
+        [UI_FIELDS.CHAT_MESSAGE.MESSAGE_STATE]: backendMessageData[SERVER_DTO_CONSTANTS.CHAT_MESSAGE.MESSAGE_STATE],
         [UI_FIELDS.CHAT_MESSAGE.MESSAGE_SENT]: backendMessageData[SERVER_DTO_CONSTANTS.CHAT_MESSAGE.MESSAGE_SENT],
     };
 }
@@ -46,7 +54,7 @@ export function mapChatMessagesFromBackendToUIMessages(messagesFromBackend) {
         let messagesArray = [];
         messagesFromBackend.forEach(backendMessageData => {
             messagesArray.push(mapUIChatMessageObjectFromBackendObject(backendMessageData));
-        })
+        });
         return messagesArray;
     }
 
