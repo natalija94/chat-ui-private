@@ -5,7 +5,7 @@ export function handleGetRequest(url, requestParams, onSuccess, onError) {
 
     axios.get(fullURI)
         .then((response) => {
-            handleResponse(`GET ${fullURI} : SUCCESS.`, response ? response.data : null, onSuccess)
+            handleResponse(`GET ${fullURI} : SUCCESS.`, response && response.data ? response.data : response, onSuccess)
         }, (error) => {
             handleResponse(`GET ${fullURI} : ERROR.`, error, onError)
         });
@@ -14,7 +14,7 @@ export function handleGetRequest(url, requestParams, onSuccess, onError) {
 export function handlePostRequest(url, body, onSuccess, onError) {
     axios.post(url, body)
         .then((response) => {
-            handleResponse(`POST ${url} : SUCCESS.`, response ? response.data : null, onSuccess)
+            handleResponse(`POST ${url} : SUCCESS.`, response && response.data ? response.data  : null, onSuccess)
         }, (error) => {
             handleResponse(`POST ${url} : ERROR.`, error, onError)
         });
