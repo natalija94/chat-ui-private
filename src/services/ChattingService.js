@@ -2,7 +2,7 @@ import {handleGetRequest, handlePostRequest} from "../util/RestUtil";
 import {DISCUSSION_CONTENT_FILTER, NUMBER_OF_MESSAGES_PER_PAGE} from "../util/businessLogicUtil";
 
 
-export const CHAT_SERVER_URL = "http://192.168.1.102:10700";
+export const CHAT_SERVER_URL = "http://localhost:10700";
 const DISCUSSION_GLOBAL_PATH = "/discuss";
 const DISCUSSION_CONTROLLER = CHAT_SERVER_URL + DISCUSSION_GLOBAL_PATH;
 
