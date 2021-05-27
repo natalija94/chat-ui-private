@@ -32,14 +32,23 @@ class SendMessageForm extends Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className={"row"}>
-                    <div className={"col-9"}>
+                    <div className={"col-8"}>
                         <textarea className={"col-12 type-message-style"}
-                          value={message}
-                          placeholder={"Enter what you think..."}
-                          onChange={this.handleCommentsChange}/>
+                                  value={message}
+                                  placeholder={"Enter what you think..."}
+                                  onChange={this.handleCommentsChange}/>
                     </div>
                     <div className={"col-3 send-mesage-button-position"}>
                         <button className={"col-12 btn send-mesage-button-style"} type="submit">Send</button>
+                        {this.props.newMessageReceived &&
+                        <div className={"col-12 send-mesage-button-position text-center"}>
+                            <svg xmlns="http://www.w3.org/2000/svg">
+                                <circle
+                                    className={this.props.justSentOffensiveMessage && this.props.newMessageReceived ?
+                                        "circle-alert text-center" : "circle-okay text-center"}
+                                    cx="8" cy="8" r="8"/>
+                            </svg>
+                        </div>}
                     </div>
                 </div>
             </form>
