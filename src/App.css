@@ -50,9 +50,9 @@
 }
 
 .current-user-received-message {
-  background-color: #f3ffeebd;
+  background-color: #e5ffdabd;
   color: #5b6167;
-  border: 1px solid #aeb4b1;
+  border: 1px solid #dae9cf;
 }
 
 .received-message-offensive{
@@ -62,8 +62,8 @@
 }
 
 .chat-background {
-  background-color: #fffab0;
-  background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f6ffaf 29px ), repeating-linear-gradient( rgba(211, 255, 226, 0.33), #5c9a1c);
+  background-color: #fff5822b;
+  /*background-image:  repeating-radial-gradient( circle at 0 0, transparent 0, #f6ffaf 29px ), repeating-linear-gradient( rgba(211, 255, 226, 0.33), #5c9a1c);*/
   position:fixed;
   top:0;
   left: 0;
@@ -80,6 +80,7 @@
 .message-style{
   font-size: 0.8em;
   font-weight: 400;
+  overflow-wrap: break-word;
 }
 
 .date-style{
