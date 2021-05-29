@@ -31,7 +31,7 @@ class SendMessageForm extends Component {
         const {message} = this.state
         return (
             <form onSubmit={this.handleSubmit}>
-                <div className={"row"}>
+                <div className={"row send-message-area-border"}>
                     <div className={"col-8"}>
                         <textarea className={"col-12 type-message-style"}
                                   value={message}

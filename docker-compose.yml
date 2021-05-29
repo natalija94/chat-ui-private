@@ -1,0 +1,25 @@
+version: '3'
+services:
+  frontend:
+    container_name: frontend
+    build: .
+    volumes:
+      - './:/chat-ui'
+      - '/chat-ui/node_modules'
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+    networks:
+      - default
+      - chatting-rs
+    external_links:
+      - backend-reference
+networks:
+  specific-network-name:
+    external: true
+# remark for me:
+#  docker ps          -> lists all running instances
+#  docker kill xyz    -> stops xyz

@@ -104,7 +104,7 @@ class DiscussionFrame extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state && this.state.currentUser && this.state.currentUser != (prevState ? prevState.currentUser : undefined)) {
+        if (this.state && this.state.currentUser && this.state.currentUser !== (prevState ? prevState.currentUser : undefined)) {
             //http communication, initial result
             //this could be accessed over socket, too (I would rather do that)
             //anyway, I wanted to use http rest at least once :)

@@ -78,6 +78,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    border: 1px solid #fff5822b;
 }
 
 .username-style {
@@ -101,7 +102,7 @@
 .type-message-style {
     border-radius: 5px;
     margin-top: 9px;
-    border: 1px solid #198754;
+    border: 1px solid #99aaa2;
     min-height: 8em;
     font-size: 0.8em;
     background: #f7ffe8f2;
@@ -142,7 +143,7 @@
 
 .no-messages-style {
     border-radius: 25px;
-    margin-top: 200px;
+    margin-top: 12em;
     border: 2px solid #198754;
     background: #5e9170;
     height: 200px;
@@ -165,4 +166,8 @@
 
 .send-new-message-content {
     height: 10%;
+}
+
+.send-message-area-border{
+    border-top: 1px solid #99aaa2;
 }
