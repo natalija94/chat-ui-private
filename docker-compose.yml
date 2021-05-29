@@ -18,7 +18,7 @@ services:
     external_links:
       - backend-reference
 networks:
-  specific-network-name:
+  chatting-rs:
     external: true
 # remark for me:
 #  docker ps          -> lists all running instances
