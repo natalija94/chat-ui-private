@@ -107,8 +107,15 @@ class DiscussionFrame extends React.Component {
         if (this.state && this.state.currentUser && this.state.currentUser !== (prevState ? prevState.currentUser : undefined)) {
             //http communication, initial result
             //this could be accessed over socket, too (I would rather do that)
-            //anyway, I wanted to use http rest at least once :)
-            ChattingService.getDiscussionPaginated(this.state.currentPage, this.state.messagesFilter,
+            //anyway, I wanted to use http rest, too :)
+
+            //todo : +if I had enough time I would definitely handle current page differently, so it would be paginated response;
+            // I mean imagine 1000000 at once returned from server :O
+            // ChattingService.getDiscussionPaginated(this.state.currentPage, this.state.messagesFilter,
+            //     this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback);
+
+            //return full conversation as it was requested in the task description, this.state.messageFilter is mocked in this version
+            ChattingService.getFullDiscussion(this.state.messagesFilter,
                 this.getDiscussionSuccessCallback, this.getDiscussionErrorOccurredCallback);
         }
     }
