@@ -95,9 +95,9 @@ class DiscussionFrame extends React.Component {
     }
 
     componentDidMount() {
-        let person = prompt("This is chat room regarding pollution. Our idea is to report places hardly polluted." +
-            " Also, we can organize volunteering actions here in order to make our environment clean and safe." +
-            "Enter your username in order to continue: ", "user_1");
+        let person = prompt("This is chat room regarding pollution. Our idea is to report places hardly polluted. " +
+            "Also, we can organize volunteering actions here in order to make our environment clean and safe. " +
+            "Please enter your username in order to continue: ", "user_1");
         this.setState({currentUser: person})
         //start communication over socket
         this.initStompClient();
