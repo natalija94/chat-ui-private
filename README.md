@@ -13,6 +13,9 @@ Initially, I started this app development ambitiously so we can see many utility
 
 If I had more time I would definitelly manage memory differently: now only state values are passes between component. We use redux store in company I’m working at and it is great. It is centralizing state into global, single, store. But, I didn’t have enough time for that. So that’s the reason why you see state values from one component can be found in another, too. (Luckily, these components only show state from parent component, and not change it:)) )
 
+Also, I don't like the way css is used in code.
+I'm sure there are a lot libraries which wraps your code, so css for components will be more readable.
+Anyway, bootstrap here at least gave it responsible design.
 
 ________________________________________________________
 
